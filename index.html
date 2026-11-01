@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Kho Tổng Ondia Digital - Mr Xuân</title>
+
+  <!-- Favicon icon nhỏ trên tab trình duyệt -->
+  <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1jkFMUkSjueDTgAju3V0XTMP1S1ho6DmZ&sz=w64">
+  <link rel="apple-touch-icon" href="https://drive.google.com/thumbnail?id=1jkFMUkSjueDTgAju3V0XTMP1S1ho6DmZ&sz=w180">
+
+  <!-- Thư viện tạo và tải trực tiếp file PDF trên điện thoại -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <style>
+    :root {
+      --brand-orange: #FF6700;
+      --orange-soft: #FFF3EB;
+      --orange-border: #FFD8BE;
+      
+      --blue-sub: #0284C7;
+      --blue-soft-bg: #F0F9FF;
+      --blue-soft-border: #BAE6FD;
+      --blue-deep: #0F172A;
+
+      /* Nền trang hơi xanh dương khoảng 20% opacity */
+      --bg-body: #E8F1F8;
+      --card-white: #FFFFFF;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+      --border-light: #DCE5EE;
+      
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-card: 0 4px 12px rgba(15, 23, 42, 0.04);
+      --shadow-header: 0 6px 18px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 40px;
+    }
+
+    .app-wrapper {
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    /* === HEADER APP === */
+    .app-header {
+      background: var(--card-white);
+      border-radius: var(--radius-lg);
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-header);
+      border: 1px solid var(--border-light);
+      position: relative;
+    }
+
+    .app-header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 16px;
+      right: 16px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--brand-orange), #38BDF8);
+      border-radius: 4px 4px 0 0;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-logo-img {
+      height: 48px;
+      width: auto;
+      max-width: 65px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-title h1 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--brand-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+
+    .brand-title span {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--blue-sub);
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .btn-sync {
+      background: var(--card-white);
+      color: var(--text-main);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 5px 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #10B981;
+      display: inline-block;
+      animation: pulseGreen 1.5s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulseGreen {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    .manager-card {
+      background: var(--blue-soft-bg);
+      border: 1px solid var(--blue-soft-border);
+      border-radius: var(--radius-md);
+      padding: 9px 12px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .manager-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .manager-name {
+      font-size: 0.85rem;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .manager-name strong {
+      color: var(--brand-orange);
+      font-weight: 800;
+      font-size: 0.92rem;
+    }
+
+    .manager-contact {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .manager-contact a {
+      color: var(--blue-sub);
+      text-decoration: none;
+      font-weight: 800;
+      background: #FFFFFF;
+      padding: 2px 7px;
+      border-radius: 6px;
+      border: 1px solid var(--blue-soft-border);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-live-time {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .internal-warning {
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+      border-left: 4px solid #F59E0B;
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+      font-size: 0.72rem;
+      line-height: 1.4;
+      color: #92400E;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .internal-warning .icon {
+      font-size: 0.85rem;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    /* === MENU TABS === */
+    .nav-tabs-main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .nav-tab-btn {
+      background: var(--card-white);
+      border: 1.5px solid var(--border-light);
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 11px 8px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .nav-tab-btn.active {
+      background: var(--blue-sub);
+      color: #FFFFFF;
+      border-color: var(--blue-sub);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
+
+    .sub-chips-wrap {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .sub-chips-wrap.show {
+      display: flex;
+    }
+
+    .chips-row {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+      align-items: center;
+    }
+
+    .chips-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chip-item {
+      background: var(--card-white);
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: 0.2s;
+    }
+
+    .chip-item.active {
+      background: var(--orange-soft);
+      color: var(--brand-orange);
+      border-color: var(--orange-border);
+      box-shadow: 0 2px 6px rgba(255, 103, 0, 0.1);
+    }
+
+    .btn-add-group-chip {
+      background: #ECFDF5;
+      color: #059669;
+      border: 1px dashed #10B981;
+      border-radius: 20px;
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .group-action-bar {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-export-group-pdf {
+      flex: 1;
+      background: linear-gradient(135deg, #0284C7, #0369A1);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.2);
+    }
+
+    /* === TÌM KIẾM & BỘ LỌC === */
+    .search-card {
+      background: var(--card-white);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-card);
+    }
+
+    .search-input-box {
+      position: relative;
+      margin-bottom: 8px;
+    }
+
+    .search-input-box input {
+      width: 100%;
+      background: #F8FAFC;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px 10px 36px;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .search-input-box input:focus {
+      border-color: var(--blue-sub);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12);
+    }
+
+    .search-icon-svg {
+      position: absolute;
+      left: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .filter-action-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 4px;
+      font-size: 0.82rem;
+    }
+
+    .chk-container {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--blue-deep);
+    }
+
+    .chk-container input {
+      accent-color: var(--brand-orange);
+      transform: scale(1.1);
+    }
+
+    .btn-switch-mode {
+      background: #F8FAFC;
+      border: 1px solid var(--border-light);
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .status-sticky-bar {
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-left: 4px solid var(--brand-orange);
+      color: var(--text-main);
+      border-radius: var(--radius-md);
+      padding: 9px 12px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+      position: sticky;
+      top: 6px;
+      z-index: 10;
+    }
+
+    .status-sticky-bar .qty-count {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .status-sticky-bar .total-sum-box {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .total-badge-number {
+      background: var(--brand-orange);
+      color: #FFFFFF;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-left: 4px;
+      font-size: 0.92rem;
+      font-weight: 900;
+    }
+
+    /* === GIAO DIỆN APP CARDS === */
+    .app-cards-view {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .single-product-card {
+      background: var(--card-white);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-card);
+      position: relative;
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #F8FAFC;
+      padding-bottom: 8px;
+    }
+
+    .card-title-group {
+      flex: 1;
+    }
+
+    .sku-tag {
+      background: var(--blue-soft-bg);
+      color: var(--blue-sub);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 4px;
+      border: 1px solid var(--blue-soft-border);
+    }
+
+    .product-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.35;
+    }
+
+    .total-stock-callout {
+      text-align: right;
+      flex-shrink: 0;
+      background: var(--orange-soft);
+      padding: 4px 9px;
+      border-radius: 8px;
+      border: 1px solid var(--orange-border);
+    }
+
+    .total-stock-callout .t-lbl {
+      font-size: 0.62rem;
+      color: var(--brand-orange);
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .total-stock-callout .t-val {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--brand-orange);
+      line-height: 1.1;
+    }
+
+    .branch-stock-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 6px;
+    }
+
+    .b-cell {
+      background: #F8FAFC;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      padding: 6px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+    }
+
+    .b-cell.active-stock {
+      background: #FFFFFF;
+      border-color: #CBD5E1;
+      font-weight: 600;
+    }
+
+    .b-cell .b-name {
+      color: var(--text-muted);
+      font-size: 0.74rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .b-cell.active-stock .b-name {
+      color: var(--text-main);
+    }
+
+    .b-cell .b-val {
+      font-weight: 700;
+      color: #94A3B8;
+      padding-left: 6px;
+    }
+
+    .b-cell.active-stock .b-val {
+      color: var(--blue-sub);
+      font-size: 0.88rem;
+    }
+
+    .card-footer-action {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border-light);
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-print-single {
+      background: #F0F9FF;
+      color: #0284C7;
+      border: 1px solid #BAE6FD;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .app-table-view {
+      background: var(--card-white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-card);
+      overflow-x: auto;
+      display: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 820px;
+    }
+
+    th {
+      background: #F8FAFC;
+      color: var(--blue-deep);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      padding: 12px 8px;
+      border-bottom: 2px solid var(--border-light);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    th.col-name {
+      text-align: left;
+    }
+
+    td {
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 0.85rem;
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    td.cell-name {
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .stock-zero { color: #CBD5E1; font-weight: 400; }
+    .stock-pos { color: var(--blue-sub); font-weight: 700; }
+    .table-total-pill {
+      font-weight: 800;
+      color: var(--brand-orange);
+      background: var(--orange-soft);
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--orange-border);
+    }
+
+    .pagination-wrap { text-align: center; margin-top: 14px; }
+    .btn-more {
+      background: var(--card-white);
+      border: 1.5px solid var(--blue-sub);
+      color: var(--blue-sub);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 9px 22px;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: var(--shadow-card);
+      transition: 0.2s;
+    }
+
+    .empty-state {
+      padding: 40px 16px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      background: var(--card-white);
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--border-light);
+    }
+
+    /* === POPUP TẠO NHÓM MỚI === */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      padding: 12px;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal-box {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 500px;
+      max-height: 88vh;
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 8px;
+    }
+
+    .modal-header h3 { font-size: 1rem; font-weight: 800; color: var(--brand-orange); }
+    .modal-close { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-muted); }
+    .modal-body { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px; color: var(--text-main); }
+    .form-group input { width: 100%; padding: 9px 12px; border: 1.5px solid var(--border-light); border-radius: var(--radius-sm); font-size: 0.88rem; outline: none; }
+    .form-group input:focus { border-color: var(--brand-orange); }
+
+    .product-pick-list {
+      max-height: 250px;
+      overflow-y: auto;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .pick-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      background: #F8FAFC;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+    .pick-item:hover { background: var(--blue-soft-bg); }
+    .modal-footer { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border-light); display: flex; justify-content: flex-end; gap: 8px; }
+    .btn-modal-cancel { background: #F1F5F9; border: none; padding: 8px 16px; border-radius: 8px; font-size: 0.82rem; font-weight: 700; color: var(--text-muted); cursor: pointer; }
+    .btn-modal-save { background: var(--brand-orange); color: #FFFFFF; border: none; padding: 8px 18px; border-radius: 8px; font-size: 0.82rem; font-weight: 700; cursor: pointer; }
+
+    /* === MODAL XEM TRƯỚC BÁO CÁO === */
+    .preview-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 150;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .preview-modal-overlay.active { display: flex; }
+
+    .preview-modal-card {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 850px;
+      max-height: 94vh;
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    .preview-modal-header {
+      background: #F8FAFC;
+      border-bottom: 1px solid var(--border-light);
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .preview-modal-header h3 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--blue-deep);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .title-edit-bar {
+      background: var(--blue-soft-bg);
+      border-bottom: 1px solid var(--blue-soft-border);
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .title-edit-bar label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--blue-sub);
+      white-space: nowrap;
+    }
+
+    .title-edit-bar input {
+      flex: 1;
+      padding: 6px 10px;
+      border: 1px solid var(--blue-soft-border);
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #C2410C;
+      outline: none;
+    }
+
+    .preview-modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      background: #F1F5F9;
+      display: flex;
+      justify-content: center;
+    }
+
+    .a4-sheet-preview {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 760px;
+      padding: 25px 20px;
+      border-radius: 4px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      font-size: 9pt;
+      color: #000;
+    }
+
+    .preview-modal-footer {
+      background: #FFFFFF;
+      border-top: 1px solid var(--border-light);
+      padding: 12px 16px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-download-pdf {
+      background: linear-gradient(135deg, #10B981, #059669);
+      color: #FFFFFF;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
+    }
+
+    .btn-download-pdf:active { transform: scale(0.97); }
+
+    .btn-print-native {
+      background: var(--blue-sub);
+      color: #FFFFFF;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .print-doc-header {
+      border-bottom: 2px solid #000;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .print-brand-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .print-brand-logo {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .print-main-title {
+      font-size: 14pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #C2410C;
+      text-align: center;
+      margin: 14px 0 6px 0;
+    }
+
+    .print-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    .print-data-table th, .print-data-table td {
+      border: 1px solid #333;
+      padding: 6px 6px;
+      font-size: 8.5pt;
+    }
+
+    .print-data-table th {
+      background: #F1F5F9;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .print-signatures-row {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 9pt;
+    }
+
+    .sign-col { text-align: center; width: 180px; }
+    .sign-space { height: 55px; }
+
+    @media print {
+      body * { visibility: hidden; }
+      #a4SheetContainer, #a4SheetContainer * { visibility: visible; }
+      #a4SheetContainer {
+        position: absolute;
+        left: 0; top: 0;
+        width: 100% !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+      }
+      @page { size: A4 portrait; margin: 12mm; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-wrapper">
+  
+  <header class="app-header">
+    <div class="header-top">
+      <div class="brand-box">
+        <img src="https://drive.google.com/thumbnail?id=1jkFMUkSjueDTgAju3V0XTMP1S1ho6DmZ&sz=w200" alt="Logo Ondia Digital" class="brand-logo-img" onerror="this.style.display='none'">
+        <div class="brand-title">
+          <h1>KHO TỔNG ONDIA DIGITAL</h1>
+          <span>Quản lý tồn kho thông minh</span>
+        </div>
+      </div>
+      <div>
+        <button class="btn-sync" onclick="loadData(false)">
+          <span class="live-dot"></span>
+          <span>Cập nhật</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="manager-card">
+      <div class="manager-info">
+        <div class="manager-name">Quản lý kho: <strong>Mr Xuân</strong></div>
+        <div class="manager-contact">
+          <span>Liên hệ hotline:</span> 
+          <a href="tel:0865879192">📞 0865.87.91.92</a>
+        </div>
+      </div>
+      <div class="badge-live-time" id="syncLabel">Đang đồng bộ...</div>
+    </div>
+
+    <div class="internal-warning">
+      <span class="icon">⚠️</span>
+      <div>
+        <strong>Quy định kho:</strong> Tài liệu nội bộ, yêu cầu nhân viên không được chia sẻ, số lượng có thể bị tồn ảo do chưa chuyển kho vì vậy cần liên hệ với thủ kho của các đơn vị trước khi bán với các sản phẩm tồn nhỏ.
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav-tabs-main">
+    <button class="nav-tab-btn active" id="btnTabAll" onclick="switchMainTab('all')">
+      🏢 Tồn Kho Toàn Tuyến
+    </button>
+    <button class="nav-tab-btn" id="btnTabGroup" onclick="switchMainTab('group')">
+      🗂️ Tồn Kho Theo Nhóm
+    </button>
+  </nav>
+
+  <!-- Thanh nhóm hàng: Đảm bảo có sẵn 3 nhóm mặc định -->
+  <div class="sub-chips-wrap" id="groupSubTabs">
+    <div class="chips-row" id="categoriesChipsBar">
+      <button class="chip-item active" onclick="switchCategory('tivinoidia')">Tivi Nội Địa</button>
+      <button class="chip-item" onclick="switchCategory('tiviquocte')">Tivi Quốc Tế</button>
+      <button class="chip-item" onclick="switchCategory('phukien')">Phụ Kiện</button>
+      <button class="btn-add-group-chip" onclick="openGroupModal()">➕ Tạo Nhóm Mới</button>
+    </div>
+    <div class="group-action-bar">
+      <button class="btn-export-group-pdf" onclick="openPreviewGroupPDF()">
+        <span>📄</span> Xem & Xuất Báo Cáo Nhóm (PDF)
+      </button>
+    </div>
+  </div>
+
+  <div class="search-card">
+    <div class="search-input-box">
+      <span class="search-icon-svg">🔍</span>
+      <input type="text" id="searchInput" placeholder="Tìm kiếm theo mã hàng hoặc tên sản phẩm..." oninput="handleSearch()">
+    </div>
+    <div class="filter-action-row">
+      <label class="chk-container">
+        <input type="checkbox" id="chkOnlyStock" onchange="handleSearch()" checked>
+        <span>Chỉ xem hàng còn tồn (&gt; 0)</span>
+      </label>
+      <button class="btn-switch-mode" id="btnToggleView" onclick="toggleViewMode()">
+        Chế độ: Thẻ (App)
+      </button>
+    </div>
+  </div>
+
+  <div class="status-sticky-bar">
+    <div class="qty-count" id="itemCount">Đang kiểm kho...</div>
+    <div class="total-sum-box">
+      Tổng tồn: <span class="total-badge-number" id="totalQty">0</span>
+    </div>
+  </div>
+
+  <div class="app-cards-view" id="cardsView"></div>
+
+  <div class="app-table-view" id="tableView">
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 10%;">Mã hàng</th>
+          <th class="col-name" style="width: 28%;">Tên sản phẩm</th>
+          <th style="width: 10%;">Minh Khai</th>
+          <th style="width: 10%;">H.V.Thụ</th>
+          <th style="width: 10%;">Yên Dũng</th>
+          <th style="width: 10%;">Hiệp Hòa</th>
+          <th style="width: 10%;">P.KD 102</th>
+          <th style="width: 12%; background: var(--orange-soft); color: var(--brand-orange);">TỔNG TỒN</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <div class="pagination-wrap" id="loadMoreWrap" style="display: none;">
+    <button class="btn-more" onclick="loadMoreItems()">Tải thêm 40 sản phẩm...</button>
+  </div>
+
+</div>
+
+<!-- CỬA SỔ MODAL TẠO NHÓM MỚI -->
+<div class="modal-overlay" id="createGroupModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>➕ Tạo Nhóm Mới Lên Google Sheet</h3>
+      <button class="modal-close" onclick="closeGroupModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Tên Tab / Nhóm Hàng Mới:</label>
+        <input type="text" id="newTabNameInput" placeholder="VD: Tủ Lạnh, Robot Ecovacs, Tineco...">
+      </div>
+      <div class="form-group">
+        <label>Tìm kiếm sản phẩm để thêm vào nhóm:</label>
+        <input type="text" id="pickSearchInput" placeholder="Gõ mã hoặc tên để lọc..." oninput="filterPickList()">
+      </div>
+      <div style="font-size: 0.76rem; color: var(--text-muted); display:flex; justify-content:space-between;">
+        <span>Tích chọn sản phẩm cần thêm:</span>
+        <span id="selectedCountBadge" style="font-weight:bold; color:var(--brand-orange)">Đã chọn: 0</span>
+      </div>
+      <div class="product-pick-list" id="pickListContainer"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-modal-cancel" onclick="closeGroupModal()">Hủy</button>
+      <button class="btn-modal-save" id="btnSubmitGroup" onclick="submitCreateGroup()">Lưu & Tạo Tab Mới</button>
+    </div>
+  </div>
+</div>
+
+<!-- CỬA SỔ XEM TRƯỚC (PREVIEW) BÁO CÁO PDF VÀ CHỌN TẢI / IN -->
+<div class="preview-modal-overlay" id="previewModal">
+  <div class="preview-modal-card">
+    <div class="preview-modal-header">
+      <h3>👁️ Xem Trước Báo Cáo Xuất Bản</h3>
+      <button class="modal-close" onclick="closePreviewModal()">✕</button>
+    </div>
+
+    <div class="title-edit-bar">
+      <label>Tiêu đề văn bản:</label>
+      <input type="text" id="editableReportTitleInput" oninput="updateLiveReportTitle(this.value)">
+    </div>
+
+    <div class="preview-modal-body">
+      <div class="a4-sheet-preview" id="a4SheetContainer"></div>
+    </div>
+
+    <div class="preview-modal-footer">
+      <button class="btn-modal-cancel" onclick="closePreviewModal()">Đóng</button>
+      <button class="btn-print-native" onclick="executeNativePrint()">
+        <span>🖨️</span> In Trực Tiếp
+      </button>
+      <button class="btn-download-pdf" onclick="executeDownloadPDF()">
+        <span>📥</span> Tải File PDF Về Máy
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz0Iw4N9Gt-RYEekWK2FPwFqP3kIjCOWsZ8udnBWbMBSUZquda8i8GHjeIwt3zIQnkn/exec";
+
+  // Khai báo danh sách danh mục mặc định ban đầu
+  const defaultCategories = [
+    { id: 'tivinoidia', name: 'Tivi Nội Địa' },
+    { id: 'tiviquocte', name: 'Tivi Quốc Tế' },
+    { id: 'phukien', name: 'Phụ Kiện' }
+  ];
+
+  let rawData = { all: [], categories: {}, categoryList: defaultCategories };
+  let filteredData = [];
+  let displayedCount = 0;
+  const PAGE_SIZE = 40;
+
+  let currentMainTab = 'all';
+  let currentGroupCategory = 'tivinoidia';
+  let currentViewMode = window.innerWidth >= 768 ? 'table' : 'card';
+
+  let selectedItemsForGroup = new Map();
+
+  function normalizeStr(str) {
+    return (str || "").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, "");
+  }
+
+  function updateViewLayout() {
+    const cardsEl = document.getElementById('cardsView');
+    const tableEl = document.getElementById('tableView');
+    const btnToggle = document.getElementById('btnToggleView');
+
+    if (currentViewMode === 'card') {
+      cardsEl.style.display = 'flex';
+      tableEl.style.display = 'none';
+      btnToggle.innerText = 'Chế độ: Thẻ (App)';
+    } else {
+      cardsEl.style.display = 'none';
+      tableEl.style.display = 'block';
+      btnToggle.innerText = 'Chế độ: Bảng (PC)';
+    }
+  }
+
+  function toggleViewMode() {
+    currentViewMode = currentViewMode === 'card' ? 'table' : 'card';
+    updateViewLayout();
+    renderCurrentBatch(true);
+  }
+
+  async function loadData(isBackground = false) {
+    const syncLabel = document.getElementById('syncLabel');
+    if (!isBackground) syncLabel.innerText = 'Đang đồng bộ KiotViet...';
+
+    try {
+      const res = await fetch(`${SCRIPT_URL}?t=${Date.now()}`);
+      const data = await res.json();
+      rawData = data;
+
+      // Hỗ trợ cả API cũ lẫn API mới: đảm bảo luôn có dữ liệu danh mục
+      if (!rawData.categoryList || rawData.categoryList.length === 0) {
+        rawData.categoryList = defaultCategories;
+      }
+      if (!rawData.categories) {
+        rawData.categories = {
+          tivinoidia: rawData.tivinoidia || [],
+          tiviquocte: rawData.tiviquocte || [],
+          phukien: rawData.phukien || []
+        };
+      }
+
+      syncLabel.innerText = rawData.lastSync ? `Cập nhật: ${rawData.lastSync}` : 'Vừa xong';
+      
+      renderCategoryChips();
+      handleSearch();
+    } catch (err) {
+      syncLabel.innerText = 'Lỗi kết nối';
+      renderCategoryChips();
+    }
+  }
+
+  setInterval(() => loadData(true), 60000);
+
+  // Render các nút nhóm: Luôn đảm bảo xuất hiện ít nhất 3 nhóm gốc
+  function renderCategoryChips() {
+    const bar = document.getElementById('categoriesChipsBar');
+    const list = (rawData.categoryList && rawData.categoryList.length > 0) ? rawData.categoryList : defaultCategories;
+
+    if (!currentGroupCategory || !list.some(c => c.id === currentGroupCategory)) {
+      currentGroupCategory = list[0].id;
+    }
+
+    let html = list.map(cat => `
+      <button class="chip-item ${cat.id === currentGroupCategory ? 'active' : ''}" onclick="switchCategory('${cat.id}')">
+        ${cat.name}
+      </button>
+    `).join('');
+
+    html += `<button class="btn-add-group-chip" onclick="openGroupModal()">➕ Tạo Nhóm Mới</button>`;
+    bar.innerHTML = html;
+  }
+
+  function switchMainTab(tab) {
+    currentMainTab = tab;
+    document.getElementById('btnTabAll').classList.toggle('active', tab === 'all');
+    document.getElementById('btnTabGroup').classList.toggle('active', tab === 'group');
+
+    const subTab = document.getElementById('groupSubTabs');
+    if (tab === 'group') {
+      subTab.classList.add('show');
+    } else {
+      subTab.classList.remove('show');
+    }
+    handleSearch();
+  }
+
+  function switchCategory(catId) {
+    currentGroupCategory = catId;
+    renderCategoryChips();
+    handleSearch();
+  }
+
+  function handleSearch() {
+    const keyword = normalizeStr(document.getElementById('searchInput').value);
+    const onlyStock = document.getElementById('chkOnlyStock').checked;
+
+    let sourceList = [];
+    if (currentMainTab === 'all') {
+      sourceList = rawData.all || [];
+    } else {
+      // Tìm trong categories object hoặc fallback sang mảng tương ứng
+      if (rawData.categories && rawData.categories[currentGroupCategory]) {
+        sourceList = rawData.categories[currentGroupCategory];
+      } else if (rawData[currentGroupCategory]) {
+        sourceList = rawData[currentGroupCategory];
+      } else {
+        sourceList = [];
+      }
+    }
+
+    filteredData = sourceList.filter(item => {
+      if (onlyStock && (item.total || 0) <= 0) return false;
+      const c = normalizeStr(item.code);
+      const n = normalizeStr(item.name);
+      return c.includes(keyword) || n.includes(keyword);
+    });
+
+    const grandTotal = filteredData.reduce((sum, item) => sum + (item.total || 0), 0);
+    document.getElementById('itemCount').innerText = `Hiển thị: ${filteredData.length} mặt hàng`;
+    document.getElementById('totalQty').innerText = grandTotal;
+
+    displayedCount = 0;
+    renderCurrentBatch(true);
+  }
+
+  function renderCurrentBatch(reset = false) {
+    const cardsEl = document.getElementById('cardsView');
+    const tableBody = document.getElementById('tableBody');
+    const loadMoreBtn = document.getElementById('loadMoreWrap');
+
+    if (reset) {
+      cardsEl.innerHTML = '';
+      tableBody.innerHTML = '';
+      displayedCount = 0;
+    }
+
+    if (filteredData.length === 0) {
+      cardsEl.innerHTML = `<div class="empty-state">Không có mặt hàng nào phù hợp với điều kiện tra cứu.</div>`;
+      tableBody.innerHTML = `<tr><td colspan="8" class="empty-state">Không có mặt hàng nào phù hợp với điều kiện tra cứu.</td></tr>`;
+      loadMoreBtn.style.display = 'none';
+      return;
+    }
+
+    const nextBatch = filteredData.slice(displayedCount, displayedCount + PAGE_SIZE);
+    displayedCount += nextBatch.length;
+
+    const cardsHtml = nextBatch.map(item => `
+      <div class="single-product-card">
+        <div class="card-head">
+          <div class="card-title-group">
+            <span class="sku-tag">${item.code}</span>
+            <div class="product-title">${item.name}</div>
+          </div>
+          <div class="total-stock-callout">
+            <div class="t-lbl">TỔNG TỒN</div>
+            <div class="t-val">${item.total || 0}</div>
+          </div>
+        </div>
+        <div class="branch-stock-grid">
+          <div class="b-cell ${item.minhKhai > 0 ? 'active-stock' : ''}">
+            <span class="b-name">Minh Khai</span>
+            <span class="b-val">${item.minhKhai || 0}</span>
+          </div>
+          <div class="b-cell ${item.hoangVanThu > 0 ? 'active-stock' : ''}">
+            <span class="b-name">H.V.Thụ</span>
+            <span class="b-val">${item.hoangVanThu || 0}</span>
+          </div>
+          <div class="b-cell ${item.yenDung > 0 ? 'active-stock' : ''}">
+            <span class="b-name">Yên Dũng</span>
+            <span class="b-val">${item.yenDung || 0}</span>
+          </div>
+          <div class="b-cell ${item.hiepHoa > 0 ? 'active-stock' : ''}">
+            <span class="b-name">Hiệp Hòa</span>
+            <span class="b-val">${item.hiepHoa || 0}</span>
+          </div>
+          <div class="b-cell ${item.kd102 > 0 ? 'active-stock' : ''}">
+            <span class="b-name">P.KD 102</span>
+            <span class="b-val">${item.kd102 || 0}</span>
+          </div>
+        </div>
+        ${currentMainTab === 'group' ? `
+          <div class="card-footer-action">
+            <button class="btn-print-single" onclick="openPreviewSinglePDF('${item.code}')">
+              <span>🖨️</span> Xem & Xuất PDF
+            </button>
+          </div>
+        ` : ''}
+      </div>
+    `).join('');
+
+    const tableHtml = nextBatch.map(item => `
+      <tr>
+        <td><span class="sku-tag">${item.code}</span></td>
+        <td class="cell-name">${item.name}</td>
+        <td class="${item.minhKhai > 0 ? 'stock-pos' : 'stock-zero'}">${item.minhKhai || 0}</td>
+        <td class="${item.hoangVanThu > 0 ? 'stock-pos' : 'stock-zero'}">${item.hoangVanThu || 0}</td>
+        <td class="${item.yenDung > 0 ? 'stock-pos' : 'stock-zero'}">${item.yenDung || 0}</td>
+        <td class="${item.hiepHoa > 0 ? 'stock-pos' : 'stock-zero'}">${item.hiepHoa || 0}</td>
+        <td class="${item.kd102 > 0 ? 'stock-pos' : 'stock-zero'}">${item.kd102 || 0}</td>
+        <td><span class="table-total-pill">${item.total || 0}</span></td>
+      </tr>
+    `).join('');
+
+    cardsEl.insertAdjacentHTML('beforeend', cardsHtml);
+    tableBody.insertAdjacentHTML('beforeend', tableHtml);
+
+    loadMoreBtn.style.display = displayedCount < filteredData.length ? 'block' : 'none';
+  }
+
+  function loadMoreItems() {
+    renderCurrentBatch(false);
+  }
+
+  window.addEventListener('scroll', () => {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 400) {
+      if (displayedCount < filteredData.length) {
+        renderCurrentBatch(false);
+      }
+    }
+  });
+
+  // === POPUP TẠO NHÓM ===
+  function openGroupModal() {
+    selectedItemsForGroup.clear();
+    document.getElementById('newTabNameInput').value = '';
+    document.getElementById('pickSearchInput').value = '';
+    document.getElementById('createGroupModal').classList.add('active');
+    filterPickList();
+  }
+
+  function closeGroupModal() {
+    document.getElementById('createGroupModal').classList.remove('active');
+  }
+
+  function filterPickList() {
+    const kw = normalizeStr(document.getElementById('pickSearchInput').value);
+    const container = document.getElementById('pickListContainer');
+    const all = rawData.all || [];
+
+    const matches = all.filter(item => {
+      return normalizeStr(item.code).includes(kw) || normalizeStr(item.name).includes(kw);
+    }).slice(0, 50);
+
+    container.innerHTML = matches.map(item => `
+      <label class="pick-item">
+        <input type="checkbox" ${selectedItemsForGroup.has(item.code) ? 'checked' : ''} onchange="togglePickItem('${item.code}', '${item.name.replace(/'/g, "\\'")}', this.checked)">
+        <span><strong>${item.code}</strong> - ${item.name}</span>
+      </label>
+    `).join('');
+  }
+
+  function togglePickItem(code, name, isChecked) {
+    if (isChecked) {
+      selectedItemsForGroup.set(code, name);
+    } else {
+      selectedItemsForGroup.delete(code);
+    }
+    document.getElementById('selectedCountBadge').innerText = `Đã chọn: ${selectedItemsForGroup.size}`;
+  }
+
+  async function submitCreateGroup() {
+    const tabName = document.getElementById('newTabNameInput').value.trim();
+    if (!tabName) {
+      alert('Vui lòng nhập tên nhóm / tên tab!');
+      return;
+    }
+    if (selectedItemsForGroup.size === 0) {
+      alert('Vui lòng tích chọn ít nhất 1 sản phẩm vào nhóm!');
+      return;
+    }
+
+    const btn = document.getElementById('btnSubmitGroup');
+    btn.disabled = true;
+    btn.innerText = 'Đang tạo tab trên Google Sheet...';
+
+    const items = [];
+    selectedItemsForGroup.forEach((name, code) => items.push({ code, name }));
+
+    try {
+      const res = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ tabName: tabName, items: items })
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert(data.message);
+        closeGroupModal();
+        loadData(false);
+      } else {
+        alert('Lỗi: ' + data.message);
+      }
+    } catch (e) {
+      alert('Đã gửi yêu cầu tạo nhóm. Vui lòng làm mới lại sau ít giây!');
+      closeGroupModal();
+      loadData(false);
+    } finally {
+      btn.disabled = false;
+      btn.innerText = 'Lưu & Tạo Tab Mới';
+    }
+  }
+
+  // === XỬ LÝ PREVIEW & XUẤT BÁO CÁO (XEM TRƯỚC / IN / TẢI) ===
+  function closePreviewModal() {
+    document.getElementById('previewModal').classList.remove('active');
+  }
+
+  function updateLiveReportTitle(newVal) {
+    const targetTitleEl = document.getElementById('renderLiveTitle');
+    if (targetTitleEl) targetTitleEl.innerText = newVal;
+  }
+
+  function openPreviewGroupPDF() {
+    let list = [];
+    if (rawData.categories && rawData.categories[currentGroupCategory]) {
+      list = rawData.categories[currentGroupCategory];
+    } else if (rawData[currentGroupCategory]) {
+      list = rawData[currentGroupCategory];
+    }
+
+    if (list.length === 0) {
+      alert('Không có dữ liệu trong danh mục này để xuất file!');
+      return;
+    }
+
+    const catObj = (rawData.categoryList || defaultCategories).find(c => c.id === currentGroupCategory);
+    const catDisplayName = catObj ? catObj.name.toUpperCase() : currentGroupCategory.toUpperCase();
+    const defaultTitle = `BÁO CÁO TỒN KHO - NHÓM ${catDisplayName}`;
+    document.getElementById('editableReportTitleInput').value = defaultTitle;
+
+    let grandTotal = 0;
+    const rowsHtml = list.map((item, idx) => {
+      grandTotal += (item.total || 0);
+      return `
+        <tr>
+          <td style="text-align:center;">${idx + 1}</td>
+          <td style="text-align:center; font-weight:bold;">${item.code}</td>
+          <td>${item.name}</td>
+          <td style="text-align:center;">${item.minhKhai || 0}</td>
+          <td style="text-align:center;">${item.hoangVanThu || 0}</td>
+          <td style="text-align:center;">${item.yenDung || 0}</td>
+          <td style="text-align:center;">${item.hiepHoa || 0}</td>
+          <td style="text-align:center;">${item.kd102 || 0}</td>
+          <td style="text-align:center; font-weight:bold; color:#C2410C;">${item.total || 0}</td>
+        </tr>
+      `;
+    }).join('');
+
+    const now = new Date();
+    document.getElementById('a4SheetContainer').innerHTML = `
+      <div class="print-doc-header">
+        <div class="print-brand-left">
+          <img src="https://drive.google.com/thumbnail?id=1jkFMUkSjueDTgAju3V0XTMP1S1ho6DmZ&sz=w200" class="print-brand-logo" alt="Ondia">
+          <div>
+            <div style="font-size: 11pt; font-weight: bold; text-transform: uppercase;">CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI & DỊCH VỤ SMARTHOME VIỆT NAM</div>
+            <div style="font-size: 9.5pt; font-weight: bold; color: #0284C7;">ONDIA DIGITAL - KHO TỔNG MINH KHAI</div>
+          </div>
+        </div>
+        <div style="text-align: right; font-size: 8pt; color: #555;">
+          <div>Ngày: ${now.toLocaleDateString('vi-VN')}</div>
+          <div>Giờ: ${now.toLocaleTimeString('vi-VN')}</div>
+        </div>
+      </div>
+
+      <div class="print-main-title" id="renderLiveTitle">${defaultTitle}</div>
+
+      <div style="font-size: 8.5pt; margin-bottom: 10px; display:flex; justify-content:space-between;">
+        <span><strong>Quản lý kho:</strong> Mr Xuân (0865.87.91.92)</span>
+        <span><strong>Tổng số mặt hàng:</strong> ${list.length} | <strong>Tổng tồn:</strong> ${grandTotal} chiếc</span>
+      </div>
+
+      <table class="print-data-table">
+        <thead>
+          <tr>
+            <th style="width: 5%;">STT</th>
+            <th style="width: 13%;">Mã Hàng</th>
+            <th style="width: 34%;">Tên Sản Phẩm</th>
+            <th style="width: 8%;">Minh Khai</th>
+            <th style="width: 8%;">H.V.Thụ</th>
+            <th style="width: 8%;">Yên Dũng</th>
+            <th style="width: 8%;">Hiệp Hòa</th>
+            <th style="width: 8%;">P.KD 102</th>
+            <th style="width: 8%;">TỔNG</th>
+          </tr>
+        </thead>
+        <tbody>${rowsHtml}</tbody>
+      </table>
+
+      <div class="print-signatures-row">
+        <div class="sign-col"><strong>THỦ KHO CHI NHÁNH</strong><div class="sign-space"></div></div>
+        <div class="sign-col"><strong>QUẢN LÝ KHO TỔNG</strong><div class="sign-space"></div><strong>Mr Xuân</strong></div>
+        <div class="sign-col"><strong>BAN GIÁM ĐỐC DUYỆT</strong><div class="sign-space"></div></div>
+      </div>
+    `;
+
+    document.getElementById('previewModal').classList.add('active');
+  }
+
+  function openPreviewSinglePDF(itemCode) {
+    let list = [];
+    if (rawData.categories && rawData.categories[currentGroupCategory]) {
+      list = rawData.categories[currentGroupCategory];
+    } else if (rawData[currentGroupCategory]) {
+      list = rawData[currentGroupCategory];
+    }
+
+    const item = list.find(i => i.code === itemCode);
+    if (!item) return;
+
+    const defaultTitle = `PHIẾU XÁC NHẬN TỒN KHO - ${item.code}`;
+    document.getElementById('editableReportTitleInput').value = defaultTitle;
+
+    const now = new Date();
+    document.getElementById('a4SheetContainer').innerHTML = `
+      <div class="print-doc-header">
+        <div class="print-brand-left">
+          <img src="https://drive.google.com/thumbnail?id=1jkFMUkSjueDTgAju3V0XTMP1S1ho6DmZ&sz=w200" class="print-brand-logo" alt="Ondia">
+          <div>
+            <div style="font-size: 11pt; font-weight: bold; text-transform: uppercase;">CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI & DỊCH VỤ SMARTHOME VIỆT NAM</div>
+            <div style="font-size: 9.5pt; font-weight: bold; color: #0284C7;">ONDIA DIGITAL - PHIẾU XÁC NHẬN TỒN KHO</div>
+          </div>
+        </div>
+        <div style="text-align: right; font-size: 8pt; color: #555;">
+          <div>${now.toLocaleDateString('vi-VN')} ${now.toLocaleTimeString('vi-VN')}</div>
+        </div>
+      </div>
+
+      <div class="print-main-title" id="renderLiveTitle">${defaultTitle}</div>
+
+      <div style="border: 1px solid #333; padding: 10px; margin-bottom: 15px; font-size: 9pt; line-height: 1.6; border-radius: 4px;">
+        <div><strong>Mã sản phẩm:</strong> ${item.code}</div>
+        <div><strong>Tên sản phẩm:</strong> ${item.name}</div>
+        <div><strong>Quản lý kho:</strong> Mr Xuân (0865.87.91.92)</div>
+        <div><strong>Tổng tồn khả dụng:</strong> <span style="font-size: 11pt; font-weight: bold; color: #C2410C;">${item.total || 0} chiếc</span></div>
+      </div>
+
+      <table class="print-data-table">
+        <thead><tr><th>Chi nhánh</th><th>Địa chỉ</th><th>Số lượng tồn</th></tr></thead>
+        <tbody>
+          <tr><td>Kho Tổng Minh Khai</td><td>Làng Dung, Bắc Giang</td><td style="text-align:center; font-weight:bold;">${item.minhKhai || 0}</td></tr>
+          <tr><td>Xiaomi Hoàng Văn Thụ</td><td>193-195 Hoàng Văn Thụ, TP. Bắc Giang</td><td style="text-align:center; font-weight:bold;">${item.hoangVanThu || 0}</td></tr>
+          <tr><td>Xiaomi Yên Dũng</td><td>Yên Dũng, Bắc Giang</td><td style="text-align:center; font-weight:bold;">${item.yenDung || 0}</td></tr>
+          <tr><td>Xiaomi Hiệp Hòa</td><td>Hiệp Hòa, Bắc Giang</td><td style="text-align:center; font-weight:bold;">${item.hiepHoa || 0}</td></tr>
+          <tr><td>Phòng KD 102</td><td>Kinh Doanh Online</td><td style="text-align:center; font-weight:bold;">${item.kd102 || 0}</td></tr>
+          <tr style="background:#FFF7ED;"><td colspan="2" style="text-align:right; font-weight:bold;">TỔNG CỘNG:</td><td style="text-align:center; font-weight:bold; color:#C2410C; font-size:11pt;">${item.total || 0} chiếc</td></tr>
+        </tbody>
+      </table>
+
+      <div class="print-signatures-row" style="margin-top: 30px;">
+        <div class="sign-col"><strong>NGƯỜI XÁC NHẬN</strong><div class="sign-space"></div></div>
+        <div class="sign-col"><strong>QUẢN LÝ KHO TỔNG</strong><div class="sign-space"></div><strong>Mr Xuân</strong></div>
+      </div>
+    `;
+
+    document.getElementById('previewModal').classList.add('active');
+  }
+
+  // Tải file PDF về bộ nhớ điện thoại
+  function executeDownloadPDF() {
+    const element = document.getElementById('a4SheetContainer');
+    const customTitle = document.getElementById('editableReportTitleInput').value.trim() || 'Bao_Cao_Ton_Kho';
+    const fileName = `${customTitle.replace(/\s+/g, '_')}_${Date.now()}.pdf`;
+
+    const opt = {
+      margin:       10,
+      filename:     fileName,
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS: true },
+      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    const btn = document.querySelector('.btn-download-pdf');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span>⏳</span> Đang tạo PDF...';
+    btn.disabled = true;
+
+    html2pdf().set(opt).from(element).save().then(() => {
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    }).catch(err => {
+      alert('Không thể tạo file PDF tự động: ' + err);
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    });
+  }
+
+  // In trực tiếp ra máy in WiFi hoặc trình in của trình duyệt
+  function executeNativePrint() {
+    window.print();
+  }
+
+  updateViewLayout();
+  renderCategoryChips();
+  loadData();
+</script>
+
+</body>
+</html>
