@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1jkFMUkSjueDTgAju3V0XTMP1S1ho6DmZ&sz=w64">
   <link rel="apple-touch-icon" href="https://drive.google.com/thumbnail?id=1jkFMUkSjueDTgAju3V0XTMP1S1ho6DmZ&sz=w180">
 
-  <!-- Thư viện tạo và tải trực tiếp file PDF trên điện thoại -->
+  <!-- Thư viện tạo và tải PDF trực tiếp -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <style>
@@ -142,6 +142,11 @@
       box-shadow: 0 1px 4px rgba(0,0,0,0.05);
       transition: all 0.2s;
       flex-shrink: 0;
+    }
+
+    .btn-sync:active {
+      background: var(--orange-soft);
+      transform: scale(0.96);
     }
 
     .live-dot {
@@ -754,7 +759,7 @@
     .btn-modal-cancel { background: #F1F5F9; border: none; padding: 8px 16px; border-radius: 8px; font-size: 0.82rem; font-weight: 700; color: var(--text-muted); cursor: pointer; }
     .btn-modal-save { background: var(--brand-orange); color: #FFFFFF; border: none; padding: 8px 18px; border-radius: 8px; font-size: 0.82rem; font-weight: 700; cursor: pointer; }
 
-    /* === MODAL XEM TRƯỚC BÁO CÁO === */
+    /* === MODAL XEM TRƯỚC BÁO CÁO (ĐÃ KHẮC PHỤC CHUẨN A4 KHÔNG BỊ CO RÚM) === */
     .preview-modal-overlay {
       display: none;
       position: fixed;
@@ -764,7 +769,7 @@
       z-index: 150;
       justify-content: center;
       align-items: center;
-      padding: 10px;
+      padding: 6px;
     }
 
     .preview-modal-overlay.active { display: flex; }
@@ -773,7 +778,7 @@
       background: #FFFFFF;
       width: 100%;
       max-width: 850px;
-      max-height: 94vh;
+      height: 96vh;
       border-radius: var(--radius-lg);
       display: flex;
       flex-direction: column;
@@ -827,30 +832,33 @@
       outline: none;
     }
 
+    /* Khung cuộn văn bản xem trước: Đảm bảo không bị co rúm chữ */
     .preview-modal-body {
       flex: 1;
-      overflow-y: auto;
-      padding: 20px;
-      background: #F1F5F9;
-      display: flex;
-      justify-content: center;
+      overflow: auto;
+      padding: 12px;
+      background: #CBD5E1;
+      display: block;
+      -webkit-overflow-scrolling: touch;
     }
 
+    /* Trang A4 chuẩn tỉ lệ: Bắt buộc width tối thiểu 700px để không bao giờ bị bóp chữ trên điện thoại */
     .a4-sheet-preview {
       background: #FFFFFF;
-      width: 100%;
-      max-width: 760px;
-      padding: 25px 20px;
+      width: 720px;
+      min-width: 720px;
+      margin: 0 auto;
+      padding: 24px 20px;
       border-radius: 4px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-      font-size: 9pt;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      font-size: 9.5pt;
       color: #000;
     }
 
     .preview-modal-footer {
       background: #FFFFFF;
       border-top: 1px solid var(--border-light);
-      padding: 12px 16px;
+      padding: 10px 14px;
       display: flex;
       justify-content: flex-end;
       align-items: center;
@@ -889,20 +897,21 @@
       gap: 6px;
     }
 
+    /* Định dạng văn bản hành chính in ấn chuẩn chỉ */
     .print-doc-header {
       border-bottom: 2px solid #000;
-      padding-bottom: 10px;
+      padding-bottom: 8px;
       margin-bottom: 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .print-brand-left {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .print-brand-logo {
@@ -917,7 +926,8 @@
       text-transform: uppercase;
       color: #C2410C;
       text-align: center;
-      margin: 14px 0 6px 0;
+      margin: 12px 0 6px 0;
+      letter-spacing: 0.5px;
     }
 
     .print-data-table {
@@ -948,14 +958,18 @@
     .sign-col { text-align: center; width: 180px; }
     .sign-space { height: 55px; }
 
+    /* Print native CSS */
     @media print {
-      body * { visibility: hidden; }
-      #a4SheetContainer, #a4SheetContainer * { visibility: visible; }
+      body * { visibility: hidden !important; }
+      #a4SheetContainer, #a4SheetContainer * { visibility: visible !important; }
       #a4SheetContainer {
-        position: absolute;
-        left: 0; top: 0;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
         width: 100% !important;
+        min-width: 100% !important;
         padding: 0 !important;
+        margin: 0 !important;
         box-shadow: none !important;
       }
       @page { size: A4 portrait; margin: 12mm; }
@@ -1136,7 +1150,7 @@
 <script>
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz0Iw4N9Gt-RYEekWK2FPwFqP3kIjCOWsZ8udnBWbMBSUZquda8i8GHjeIwt3zIQnkn/exec";
 
-  // Khai báo danh sách danh mục mặc định ban đầu
+  // Khai báo danh sách nhóm mặc định ban đầu
   const defaultCategories = [
     { id: 'tivinoidia', name: 'Tivi Nội Địa' },
     { id: 'tiviquocte', name: 'Tivi Quốc Tế' },
@@ -1189,7 +1203,6 @@
       const data = await res.json();
       rawData = data;
 
-      // Hỗ trợ cả API cũ lẫn API mới: đảm bảo luôn có dữ liệu danh mục
       if (!rawData.categoryList || rawData.categoryList.length === 0) {
         rawData.categoryList = defaultCategories;
       }
@@ -1213,7 +1226,6 @@
 
   setInterval(() => loadData(true), 60000);
 
-  // Render các nút nhóm: Luôn đảm bảo xuất hiện ít nhất 3 nhóm gốc
   function renderCategoryChips() {
     const bar = document.getElementById('categoriesChipsBar');
     const list = (rawData.categoryList && rawData.categoryList.length > 0) ? rawData.categoryList : defaultCategories;
@@ -1260,7 +1272,6 @@
     if (currentMainTab === 'all') {
       sourceList = rawData.all || [];
     } else {
-      // Tìm trong categories object hoặc fallback sang mảng tương ứng
       if (rawData.categories && rawData.categories[currentGroupCategory]) {
         sourceList = rawData.categories[currentGroupCategory];
       } else if (rawData[currentGroupCategory]) {
@@ -1512,7 +1523,6 @@
     document.getElementById('a4SheetContainer').innerHTML = `
       <div class="print-doc-header">
         <div class="print-brand-left">
-          <img src="https://drive.google.com/thumbnail?id=1jkFMUkSjueDTgAju3V0XTMP1S1ho6DmZ&sz=w200" class="print-brand-logo" alt="Ondia">
           <div>
             <div style="font-size: 11pt; font-weight: bold; text-transform: uppercase;">CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI & DỊCH VỤ SMARTHOME VIỆT NAM</div>
             <div style="font-size: 9.5pt; font-weight: bold; color: #0284C7;">ONDIA DIGITAL - KHO TỔNG MINH KHAI</div>
@@ -1576,7 +1586,6 @@
     document.getElementById('a4SheetContainer').innerHTML = `
       <div class="print-doc-header">
         <div class="print-brand-left">
-          <img src="https://drive.google.com/thumbnail?id=1jkFMUkSjueDTgAju3V0XTMP1S1ho6DmZ&sz=w200" class="print-brand-logo" alt="Ondia">
           <div>
             <div style="font-size: 11pt; font-weight: bold; text-transform: uppercase;">CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI & DỊCH VỤ SMARTHOME VIỆT NAM</div>
             <div style="font-size: 9.5pt; font-weight: bold; color: #0284C7;">ONDIA DIGITAL - PHIẾU XÁC NHẬN TỒN KHO</div>
@@ -1609,7 +1618,7 @@
       </table>
 
       <div class="print-signatures-row" style="margin-top: 30px;">
-        <div class="sign-col"><strong>NGƯỜI XÁC NHẬN</strong><div class="sign-space"></div></div>
+        <div class="sign-col"><strong>NGƯỜI YÊU CẦU</strong><div class="sign-space"></div></div>
         <div class="sign-col"><strong>QUẢN LÝ KHO TỔNG</strong><div class="sign-space"></div><strong>Mr Xuân</strong></div>
       </div>
     `;
@@ -1617,17 +1626,17 @@
     document.getElementById('previewModal').classList.add('active');
   }
 
-  // Tải file PDF về bộ nhớ điện thoại
+  // Tải file PDF về điện thoại (Đã tinh chỉnh thông số khổ chuẩn không bị treo)
   function executeDownloadPDF() {
     const element = document.getElementById('a4SheetContainer');
     const customTitle = document.getElementById('editableReportTitleInput').value.trim() || 'Bao_Cao_Ton_Kho';
     const fileName = `${customTitle.replace(/\s+/g, '_')}_${Date.now()}.pdf`;
 
     const opt = {
-      margin:       10,
+      margin:       [8, 8, 8, 8],
       filename:     fileName,
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2, useCORS: true },
+      image:        { type: 'jpeg', quality: 0.95 },
+      html2canvas:  { scale: 2, useCORS: true, logging: false },
       jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
@@ -1640,19 +1649,17 @@
       btn.innerHTML = originalText;
       btn.disabled = false;
     }).catch(err => {
-      alert('Không thể tạo file PDF tự động: ' + err);
+      alert('Không thể tạo file PDF: ' + err);
       btn.innerHTML = originalText;
       btn.disabled = false;
     });
   }
 
-  // In trực tiếp ra máy in WiFi hoặc trình in của trình duyệt
   function executeNativePrint() {
     window.print();
   }
 
   updateViewLayout();
-  renderCategoryChips();
   loadData();
 </script>
 
