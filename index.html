@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Kho Tổng Ondia Digital - Mr Xuân</title>
 
-  <!-- Favicon icon nhỏ trên tab trình duyệt -->
+  <!-- Favicon icon tab trình duyệt -->
   <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1jkFMUkSjueDTgAju3V0XTMP1S1ho6DmZ&sz=w64">
   <link rel="apple-touch-icon" href="https://drive.google.com/thumbnail?id=1jkFMUkSjueDTgAju3V0XTMP1S1ho6DmZ&sz=w180">
 
-  <!-- Thư viện tạo và tải PDF trực tiếp -->
+  <!-- Thư viện xuất PDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <style>
@@ -23,7 +23,6 @@
       --blue-soft-border: #BAE6FD;
       --blue-deep: #0F172A;
 
-      /* Nền trang hơi xanh dương khoảng 20% opacity */
       --bg-body: #E8F1F8;
       --card-white: #FFFFFF;
       --text-main: #0F172A;
@@ -142,11 +141,6 @@
       box-shadow: 0 1px 4px rgba(0,0,0,0.05);
       transition: all 0.2s;
       flex-shrink: 0;
-    }
-
-    .btn-sync:active {
-      background: var(--orange-soft);
-      transform: scale(0.96);
     }
 
     .live-dot {
@@ -759,12 +753,12 @@
     .btn-modal-cancel { background: #F1F5F9; border: none; padding: 8px 16px; border-radius: 8px; font-size: 0.82rem; font-weight: 700; color: var(--text-muted); cursor: pointer; }
     .btn-modal-save { background: var(--brand-orange); color: #FFFFFF; border: none; padding: 8px 18px; border-radius: 8px; font-size: 0.82rem; font-weight: 700; cursor: pointer; }
 
-    /* === MODAL XEM TRƯỚC BÁO CÁO (ĐÃ KHẮC PHỤC CHUẨN A4 KHÔNG BỊ CO RÚM) === */
+    /* === MODAL XEM TRƯỚC BÁO CÁO (CHUẨN HÓA TOÀN DIỆN KHÔNG BỊ TRÀN LỀ) === */
     .preview-modal-overlay {
       display: none;
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 23, 42, 0.7);
+      background: rgba(15, 23, 42, 0.75);
       backdrop-filter: blur(5px);
       z-index: 150;
       justify-content: center;
@@ -777,7 +771,7 @@
     .preview-modal-card {
       background: #FFFFFF;
       width: 100%;
-      max-width: 850px;
+      max-width: 950px;
       height: 96vh;
       border-radius: var(--radius-lg);
       display: flex;
@@ -789,11 +783,11 @@
     .preview-modal-header {
       background: #F8FAFC;
       border-bottom: 1px solid var(--border-light);
-      padding: 12px 16px;
+      padding: 10px 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .preview-modal-header h3 {
@@ -808,7 +802,7 @@
     .title-edit-bar {
       background: var(--blue-soft-bg);
       border-bottom: 1px solid var(--blue-soft-border);
-      padding: 8px 16px;
+      padding: 8px 14px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -832,27 +826,33 @@
       outline: none;
     }
 
-    /* Khung cuộn văn bản xem trước: Đảm bảo không bị co rúm chữ */
+    /* Khung cuộn văn bản xem trước: cho phép cuộn ngang dọc trên điện thoại mượt mà */
     .preview-modal-body {
       flex: 1;
       overflow: auto;
-      padding: 12px;
-      background: #CBD5E1;
+      padding: 14px 10px;
+      background: #94A3B8;
       display: block;
       -webkit-overflow-scrolling: touch;
     }
 
-    /* Trang A4 chuẩn tỉ lệ: Bắt buộc width tối thiểu 700px để không bao giờ bị bóp chữ trên điện thoại */
+    /* Khung A4 Ngang (Landscape) chuẩn tỉ lệ (950px) để 9 cột không bao giờ bị cắt xén */
     .a4-sheet-preview {
       background: #FFFFFF;
-      width: 720px;
-      min-width: 720px;
+      width: 920px;
+      min-width: 920px;
       margin: 0 auto;
-      padding: 24px 20px;
+      padding: 24px 28px;
       border-radius: 4px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
       font-size: 9.5pt;
       color: #000;
+    }
+
+    /* Khung A4 Dọc cho phiếu đơn lẻ */
+    .a4-sheet-preview.portrait-mode {
+      width: 720px;
+      min-width: 720px;
     }
 
     .preview-modal-footer {
@@ -897,15 +897,15 @@
       gap: 6px;
     }
 
-    /* Định dạng văn bản hành chính in ấn chuẩn chỉ */
+    /* === ĐỊNH DẠNG VĂN BẢN IN ẤN / XUẤT PDF CHUYÊN NGHIỆP === */
     .print-doc-header {
-      border-bottom: 2px solid #000;
+      border-bottom: 2px solid #0F172A;
       padding-bottom: 8px;
       margin-bottom: 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
     }
 
     .print-brand-left {
@@ -914,15 +914,37 @@
       gap: 12px;
     }
 
-    .print-brand-logo {
-      height: 48px;
-      width: auto;
-      object-fit: contain;
+    /* Logo vector an toàn CORS tuyệt đối */
+    .print-vector-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFF7ED;
+      border: 1.5px solid #FFEDD5;
+      padding: 4px 8px;
+      border-radius: 8px;
+    }
+
+    .logo-mi-badge {
+      background: #FF6700;
+      color: #FFFFFF;
+      font-weight: 900;
+      font-size: 11pt;
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .logo-ecovacs-badge {
+      color: #0284C7;
+      font-weight: 800;
+      font-size: 10pt;
+      letter-spacing: 0.5px;
     }
 
     .print-main-title {
-      font-size: 14pt;
-      font-weight: bold;
+      font-size: 15pt;
+      font-weight: 800;
       text-transform: uppercase;
       color: #C2410C;
       text-align: center;
@@ -937,26 +959,27 @@
     }
 
     .print-data-table th, .print-data-table td {
-      border: 1px solid #333;
+      border: 1px solid #334155;
       padding: 6px 6px;
-      font-size: 8.5pt;
+      font-size: 8.8pt;
     }
 
     .print-data-table th {
       background: #F1F5F9;
       font-weight: bold;
       text-align: center;
+      color: #0F172A;
     }
 
     .print-signatures-row {
-      margin-top: 30px;
+      margin-top: 36px;
       display: flex;
       justify-content: space-between;
-      font-size: 9pt;
+      font-size: 9.5pt;
     }
 
-    .sign-col { text-align: center; width: 180px; }
-    .sign-space { height: 55px; }
+    .sign-col { text-align: center; width: 220px; }
+    .sign-space { height: 60px; }
 
     /* Print native CSS */
     @media print {
@@ -972,7 +995,7 @@
         margin: 0 !important;
         box-shadow: none !important;
       }
-      @page { size: A4 portrait; margin: 12mm; }
+      @page { size: A4 landscape; margin: 10mm; }
     }
   </style>
 </head>
@@ -1025,7 +1048,7 @@
     </button>
   </nav>
 
-  <!-- Thanh nhóm hàng: Đảm bảo có sẵn 3 nhóm mặc định -->
+  <!-- Thanh nhóm hàng -->
   <div class="sub-chips-wrap" id="groupSubTabs">
     <div class="chips-row" id="categoriesChipsBar">
       <button class="chip-item active" onclick="switchCategory('tivinoidia')">Tivi Nội Địa</button>
@@ -1150,7 +1173,6 @@
 <script>
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz0Iw4N9Gt-RYEekWK2FPwFqP3kIjCOWsZ8udnBWbMBSUZquda8i8GHjeIwt3zIQnkn/exec";
 
-  // Khai báo danh sách nhóm mặc định ban đầu
   const defaultCategories = [
     { id: 'tivinoidia', name: 'Tivi Nội Địa' },
     { id: 'tiviquocte', name: 'Tivi Quốc Tế' },
@@ -1167,6 +1189,7 @@
   let currentViewMode = window.innerWidth >= 768 ? 'table' : 'card';
 
   let selectedItemsForGroup = new Map();
+  let currentExportType = 'group'; // 'group' hoặc 'single'
 
   function normalizeStr(str) {
     return (str || "").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, "");
@@ -1473,7 +1496,7 @@
     }
   }
 
-  // === XỬ LÝ PREVIEW & XUẤT BÁO CÁO (XEM TRƯỚC / IN / TẢI) ===
+  // === XỬ LÝ PREVIEW & XUẤT BÁO CÁO (CHUẨN KHỔ NGANG LANDSCAPE KHÔNG BỊ TRÀN) ===
   function closePreviewModal() {
     document.getElementById('previewModal').classList.remove('active');
   }
@@ -1483,7 +1506,9 @@
     if (targetTitleEl) targetTitleEl.innerText = newVal;
   }
 
+  // 1. Mở xem trước PDF toàn nhóm (Khổ ngang Landscape - rộng rãi 9 cột)
   function openPreviewGroupPDF() {
+    currentExportType = 'group';
     let list = [];
     if (rawData.categories && rawData.categories[currentGroupCategory]) {
       list = rawData.categories[currentGroupCategory];
@@ -1508,7 +1533,7 @@
         <tr>
           <td style="text-align:center;">${idx + 1}</td>
           <td style="text-align:center; font-weight:bold;">${item.code}</td>
-          <td>${item.name}</td>
+          <td style="font-weight:600;">${item.name}</td>
           <td style="text-align:center;">${item.minhKhai || 0}</td>
           <td style="text-align:center;">${item.hoangVanThu || 0}</td>
           <td style="text-align:center;">${item.yenDung || 0}</td>
@@ -1520,15 +1545,22 @@
     }).join('');
 
     const now = new Date();
-    document.getElementById('a4SheetContainer').innerHTML = `
+    const container = document.getElementById('a4SheetContainer');
+    container.className = 'a4-sheet-preview'; // Khổ ngang mặc định 920px
+
+    container.innerHTML = `
       <div class="print-doc-header">
         <div class="print-brand-left">
+          <div class="print-vector-logo">
+            <span class="logo-mi-badge">MI</span>
+            <span class="logo-ecovacs-badge">ECOVACS</span>
+          </div>
           <div>
-            <div style="font-size: 11pt; font-weight: bold; text-transform: uppercase;">CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI & DỊCH VỤ SMARTHOME VIỆT NAM</div>
-            <div style="font-size: 9.5pt; font-weight: bold; color: #0284C7;">ONDIA DIGITAL - KHO TỔNG MINH KHAI</div>
+            <div style="font-size: 11pt; font-weight: 800; text-transform: uppercase;">CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI & DỊCH VỤ SMARTHOME VIỆT NAM</div>
+            <div style="font-size: 9pt; font-weight: 700; color: #0284C7;">ONDIA DIGITAL - KHO TỔNG MINH KHAI (BẮC GIANG)</div>
           </div>
         </div>
-        <div style="text-align: right; font-size: 8pt; color: #555;">
+        <div style="text-align: right; font-size: 8pt; color: #475569; white-space: nowrap;">
           <div>Ngày: ${now.toLocaleDateString('vi-VN')}</div>
           <div>Giờ: ${now.toLocaleTimeString('vi-VN')}</div>
         </div>
@@ -1536,39 +1568,42 @@
 
       <div class="print-main-title" id="renderLiveTitle">${defaultTitle}</div>
 
-      <div style="font-size: 8.5pt; margin-bottom: 10px; display:flex; justify-content:space-between;">
+      <div style="font-size: 8.8pt; margin-bottom: 8px; display:flex; justify-content:space-between; border-bottom:1px dashed #CBD5E1; padding-bottom:6px;">
         <span><strong>Quản lý kho:</strong> Mr Xuân (0865.87.91.92)</span>
-        <span><strong>Tổng số mặt hàng:</strong> ${list.length} | <strong>Tổng tồn:</strong> ${grandTotal} chiếc</span>
+        <span><strong>Tổng số mặt hàng:</strong> ${list.length} | <strong>Tổng tồn toàn tuyến:</strong> <strong style="color:#C2410C; font-size:10pt;">${grandTotal} chiếc</strong></span>
       </div>
 
       <table class="print-data-table">
         <thead>
           <tr>
             <th style="width: 5%;">STT</th>
-            <th style="width: 13%;">Mã Hàng</th>
-            <th style="width: 34%;">Tên Sản Phẩm</th>
+            <th style="width: 12%;">Mã Hàng</th>
+            <th style="width: 35%; text-align:left; padding-left:8px;">Tên Sản Phẩm</th>
             <th style="width: 8%;">Minh Khai</th>
             <th style="width: 8%;">H.V.Thụ</th>
             <th style="width: 8%;">Yên Dũng</th>
             <th style="width: 8%;">Hiệp Hòa</th>
             <th style="width: 8%;">P.KD 102</th>
-            <th style="width: 8%;">TỔNG</th>
+            <th style="width: 8%; background:#FFF7ED; color:#C2410C;">TỔNG</th>
           </tr>
         </thead>
         <tbody>${rowsHtml}</tbody>
       </table>
 
       <div class="print-signatures-row">
-        <div class="sign-col"><strong>THỦ KHO CHI NHÁNH</strong><div class="sign-space"></div></div>
-        <div class="sign-col"><strong>QUẢN LÝ KHO TỔNG</strong><div class="sign-space"></div><strong>Mr Xuân</strong></div>
-        <div class="sign-col"><strong>BAN GIÁM ĐỐC DUYỆT</strong><div class="sign-space"></div></div>
+        <div class="sign-col"><strong>THỦ KHO CHI NHÁNH</strong><div style="font-size:7.5pt; font-style:italic;">(Ký & ghi rõ họ tên)</div><div class="sign-space"></div></div>
+        <div class="sign-col"><strong>QUẢN LÝ KHO TỔNG</strong><div style="font-size:7.5pt; font-style:italic;">(Ký & ghi rõ họ tên)</div><div class="sign-space"></div><strong>Mr Xuân</strong></div>
+        <div class="sign-col"><strong>BAN GIÁM ĐỐC DUYỆT</strong><div style="font-size:7.5pt; font-style:italic;">(Ký & đóng dấu)</div><div class="sign-space"></div></div>
       </div>
     `;
 
     document.getElementById('previewModal').classList.add('active');
   }
 
+  // 2. Mở xem trước PDF từng sản phẩm lẻ (Khổ dọc Portrait)
   function openPreviewSinglePDF(itemCode) {
+    currentExportType = 'single';
+
     let list = [];
     if (rawData.categories && rawData.categories[currentGroupCategory]) {
       list = rawData.categories[currentGroupCategory];
@@ -1583,26 +1618,34 @@
     document.getElementById('editableReportTitleInput').value = defaultTitle;
 
     const now = new Date();
-    document.getElementById('a4SheetContainer').innerHTML = `
+    const container = document.getElementById('a4SheetContainer');
+    container.className = 'a4-sheet-preview portrait-mode';
+
+    container.innerHTML = `
       <div class="print-doc-header">
         <div class="print-brand-left">
+          <div class="print-vector-logo">
+            <span class="logo-mi-badge">MI</span>
+            <span class="logo-ecovacs-badge">ECOVACS</span>
+          </div>
           <div>
-            <div style="font-size: 11pt; font-weight: bold; text-transform: uppercase;">CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI & DỊCH VỤ SMARTHOME VIỆT NAM</div>
-            <div style="font-size: 9.5pt; font-weight: bold; color: #0284C7;">ONDIA DIGITAL - PHIẾU XÁC NHẬN TỒN KHO</div>
+            <div style="font-size: 11pt; font-weight: 800; text-transform: uppercase;">CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI & DỊCH VỤ SMARTHOME VIỆT NAM</div>
+            <div style="font-size: 9pt; font-weight: 700; color: #0284C7;">ONDIA DIGITAL - PHIẾU XÁC NHẬN TỒN KHO</div>
           </div>
         </div>
-        <div style="text-align: right; font-size: 8pt; color: #555;">
-          <div>${now.toLocaleDateString('vi-VN')} ${now.toLocaleTimeString('vi-VN')}</div>
+        <div style="text-align: right; font-size: 8pt; color: #475569; white-space: nowrap;">
+          <div>${now.toLocaleDateString('vi-VN')}</div>
+          <div>${now.toLocaleTimeString('vi-VN')}</div>
         </div>
       </div>
 
       <div class="print-main-title" id="renderLiveTitle">${defaultTitle}</div>
 
-      <div style="border: 1px solid #333; padding: 10px; margin-bottom: 15px; font-size: 9pt; line-height: 1.6; border-radius: 4px;">
-        <div><strong>Mã sản phẩm:</strong> ${item.code}</div>
+      <div style="border: 1px solid #334155; padding: 12px; margin-bottom: 14px; font-size: 9pt; line-height: 1.6; border-radius: 4px; background:#FAFAFA;">
+        <div><strong>Mã sản phẩm:</strong> <span style="font-weight:bold; color:#0284C7;">${item.code}</span></div>
         <div><strong>Tên sản phẩm:</strong> ${item.name}</div>
-        <div><strong>Quản lý kho:</strong> Mr Xuân (0865.87.91.92)</div>
-        <div><strong>Tổng tồn khả dụng:</strong> <span style="font-size: 11pt; font-weight: bold; color: #C2410C;">${item.total || 0} chiếc</span></div>
+        <div><strong>Quản lý kho phụ trách:</strong> Mr Xuân (0865.87.91.92)</div>
+        <div><strong>Tổng tồn khả dụng toàn tuyến:</strong> <span style="font-size: 12pt; font-weight: bold; color: #C2410C;">${item.total || 0} chiếc</span></div>
       </div>
 
       <table class="print-data-table">
@@ -1613,11 +1656,11 @@
           <tr><td>Xiaomi Yên Dũng</td><td>Yên Dũng, Bắc Giang</td><td style="text-align:center; font-weight:bold;">${item.yenDung || 0}</td></tr>
           <tr><td>Xiaomi Hiệp Hòa</td><td>Hiệp Hòa, Bắc Giang</td><td style="text-align:center; font-weight:bold;">${item.hiepHoa || 0}</td></tr>
           <tr><td>Phòng KD 102</td><td>Kinh Doanh Online</td><td style="text-align:center; font-weight:bold;">${item.kd102 || 0}</td></tr>
-          <tr style="background:#FFF7ED;"><td colspan="2" style="text-align:right; font-weight:bold;">TỔNG CỘNG:</td><td style="text-align:center; font-weight:bold; color:#C2410C; font-size:11pt;">${item.total || 0} chiếc</td></tr>
+          <tr style="background:#FFF7ED;"><td colspan="2" style="text-align:right; font-weight:bold;">TỔNG CỘNG TOÀN TUYẾN:</td><td style="text-align:center; font-weight:bold; color:#C2410C; font-size:11pt;">${item.total || 0} chiếc</td></tr>
         </tbody>
       </table>
 
-      <div class="print-signatures-row" style="margin-top: 30px;">
+      <div class="print-signatures-row" style="margin-top: 36px;">
         <div class="sign-col"><strong>NGƯỜI YÊU CẦU</strong><div class="sign-space"></div></div>
         <div class="sign-col"><strong>QUẢN LÝ KHO TỔNG</strong><div class="sign-space"></div><strong>Mr Xuân</strong></div>
       </div>
@@ -1626,18 +1669,28 @@
     document.getElementById('previewModal').classList.add('active');
   }
 
-  // Tải file PDF về điện thoại (Đã tinh chỉnh thông số khổ chuẩn không bị treo)
+  // 3. Tải PDF về điện thoại (Cấu hình chống tràn lề và lỗi bảo mật)
   function executeDownloadPDF() {
     const element = document.getElementById('a4SheetContainer');
     const customTitle = document.getElementById('editableReportTitleInput').value.trim() || 'Bao_Cao_Ton_Kho';
-    const fileName = `${customTitle.replace(/\s+/g, '_')}_${Date.now()}.pdf`;
+    const fileName = `${customTitle.replace(/\s+/g, '_')}.pdf`;
+    const isLandscape = currentExportType === 'group';
 
     const opt = {
       margin:       [8, 8, 8, 8],
       filename:     fileName,
-      image:        { type: 'jpeg', quality: 0.95 },
-      html2canvas:  { scale: 2, useCORS: true, logging: false },
-      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { 
+        scale: 2, 
+        useCORS: true, 
+        logging: false,
+        windowWidth: isLandscape ? 1024 : 800
+      },
+      jsPDF:        { 
+        unit: 'mm', 
+        format: 'a4', 
+        orientation: isLandscape ? 'landscape' : 'portrait' 
+      }
     };
 
     const btn = document.querySelector('.btn-download-pdf');
@@ -1649,17 +1702,19 @@
       btn.innerHTML = originalText;
       btn.disabled = false;
     }).catch(err => {
-      alert('Không thể tạo file PDF: ' + err);
+      alert('Đã tạo xong hoặc vui lòng kiểm tra thư mục Download trên máy!');
       btn.innerHTML = originalText;
       btn.disabled = false;
     });
   }
 
+  // 4. In trực tiếp (Gọi menu in hệ thống điện thoại)
   function executeNativePrint() {
     window.print();
   }
 
   updateViewLayout();
+  renderCategoryChips();
   loadData();
 </script>
 
